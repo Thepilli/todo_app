@@ -4,22 +4,23 @@ import 'package:todo_app/core/colors.dart';
 import 'package:todo_app/core/constants.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    required this.isObscured,
-    this.onChanged,
-    this.suffixIcon,
-    this.prefixIcon,
-    this.keyboardType,
-    this.hintStyle,
-  });
+  const CustomTextField(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      required this.isObscured,
+      this.onChanged,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.keyboardType,
+      this.hintStyle,
+      this.isReadOnly = false});
 
   final TextEditingController controller;
   final String hintText;
   final TextStyle? hintStyle;
   final bool isObscured;
+  final bool isReadOnly;
   final void Function(String)? onChanged;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
@@ -31,6 +32,7 @@ class CustomTextField extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 400),
       decoration: BoxDecoration(color: AppColors.light, borderRadius: BorderRadius.all(Radius.circular(AppConst.jRadius))),
       child: TextFormField(
+        readOnly: isReadOnly,
         keyboardType: keyboardType,
         controller: controller,
         cursorHeight: 25,

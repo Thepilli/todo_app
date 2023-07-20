@@ -9,8 +9,8 @@ import 'package:todo_app/core/constants.dart';
 import 'package:todo_app/core/strings/image_strings.dart';
 import 'package:todo_app/features/todo/views/home_page.dart';
 
-class OtpPage extends StatelessWidget {
-  const OtpPage({super.key});
+class OTPVerificationScreen extends StatelessWidget {
+  const OTPVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
