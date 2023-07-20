@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/colors.dart';
-import 'package:todo_app/core/common/widgets/fading_text.dart';
+import 'package:todo_app/core/common/widgets/.fading_text.dart';
 import 'package:todo_app/core/common/widgets/white_space.dart';
 import 'package:todo_app/core/strings/image_strings.dart';
 
