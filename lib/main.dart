@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/core/colors.dart';
 import 'package:todo_app/features/authentication/app/user_provider.dart';
 import 'package:todo_app/features/on_boarding/views/on_boarding_screen.dart';
-import 'package:todo_app/features/todo/views/home_page.dart';
+import 'package:todo_app/features/todo/views/home_screen.dart';
 import 'package:todo_app/firebase_options.dart';
 
 Future<void> main() async {
@@ -32,12 +32,12 @@ class MyApp extends ConsumerWidget {
           title: 'Flutter Demo',
           theme: ThemeData(
             scaffoldBackgroundColor: AppColors.darkBackground,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColors.tPrimaryColor),
             useMaterial3: true,
           ),
           home: ref.watch(userProvider).when(
             data: (userExists) {
-              if (userExists) return const HomePage();
+              if (userExists) return HomePage();
               return const OnBoardingScreen();
             },
             error: (error, stackTrace) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/core/common/widgets/my_material_button.dart';
 import 'package:todo_app/core/common/widgets/white_space.dart';
 import 'package:todo_app/core/strings/image_strings.dart';
-import 'package:todo_app/features/authentication/views/login_page.dart';
+import 'package:todo_app/features/authentication/views/login_screen.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({super.key});
@@ -21,7 +21,7 @@ class SecondPage extends StatelessWidget {
             Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => LoginPage(),
+                  builder: (context) => const LoginPage(),
                 ));
           },
         ),

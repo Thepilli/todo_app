@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/core/helper/db_helper.dart';
 import 'package:todo_app/core/utils/core_utils.dart';
-import 'package:todo_app/features/authentication/views/otp_verification_page.dart';
-import 'package:todo_app/features/todo/views/home_page.dart';
+import 'package:todo_app/features/authentication/views/otp_verification_screen.dart';
+import 'package:todo_app/features/todo/views/home_screen.dart';
 
 final authProvider = Provider((ref) => AuthenticationRepository(auth: FirebaseAuth.instance));
 
@@ -64,7 +64,7 @@ class AuthenticationRepository {
         await DBHelper.createUser(isVerified: true);
         navigator.pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => HomePage(),
           ),
           (route) => false,
         );

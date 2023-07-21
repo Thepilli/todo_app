@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
-  static const tPrimaryColor = Color(0xFFFFE400);
+  static const tPrimaryColor = Colors.cyan;
   static const tSecondaryColor = Color(0xFF272727);
   static const tAccentColor = Color(0xFF001BFF);
   static const tCardBgColor = Color(0xffffdcbd);

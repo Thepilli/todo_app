@@ -3,8 +3,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:todo_app/core/colors.dart';
 import 'package:todo_app/core/common/widgets/.fading_text.dart';
 import 'package:todo_app/core/common/widgets/white_space.dart';
-import 'package:todo_app/features/on_boarding/views/widgets/first_page.dart';
-import 'package:todo_app/features/on_boarding/views/widgets/second_page.dart';
+import 'package:todo_app/features/on_boarding/views/widgets/first_screen.dart';
+import 'package:todo_app/features/on_boarding/views/widgets/second_screen.dart';
 
 //Onboardig Screen
 // Image

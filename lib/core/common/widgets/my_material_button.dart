@@ -3,10 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/core/colors.dart';
 
 class MyMaterialButton extends StatelessWidget {
-  const MyMaterialButton({super.key, required this.buttonText, required this.onPressed, required this.isEnabled});
+  const MyMaterialButton({
+    super.key,
+    required this.buttonText,
+    required this.onPressed,
+    required this.isEnabled,
+    this.color = AppColors.light,
+  });
   final String buttonText;
   final VoidCallback? onPressed;
   final bool isEnabled;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class MyMaterialButton extends StatelessWidget {
       child: MaterialButton(
         disabledColor: AppColors.blackColor.withOpacity(.3),
         onPressed: isEnabled ? onPressed : null,
-        color: AppColors.light,
+        color: color,
         textColor: AppColors.textDarkColor,
         height: 50,
         minWidth: double.maxFinite,
