@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:country_picker/country_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,18 +12,18 @@ import 'package:todo_app/core/common/widgets/height_spacer.dart';
 import 'package:todo_app/core/common/widgets/reusable_text.dart';
 import 'package:todo_app/core/constants.dart';
 import 'package:todo_app/core/strings/image_strings.dart';
+import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/features/authentication/app/country_code_provider.dart';
 import 'package:todo_app/features/authentication/controller/authentication_controller.dart';
-import 'package:todo_app/features/authentication/repository/authentication_repository.dart';
-import 'package:todo_app/features/authentication/views/otp_page.dart';
 
-class LoginPage extends ConsumerWidget {
-  LoginPage({super.key});
-  final TextEditingController phoneNumberController = TextEditingController();
+class LoginPage extends HookConsumerWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final code = ref.watch(countryCodeProvider);
+    final phoneNumberController = TextEditingController();
+
     return Scaffold(
         body: SafeArea(
       child: Padding(
@@ -80,15 +79,16 @@ class LoginPage extends ConsumerWidget {
             ),
             HeightSpacer(height: 20),
             CustomOtnButton(
-                onTap: () {
-                  AuthenticationController(AuthenticationRepository(auth: FirebaseAuth.instance))
-                      .sendOTP(context: context, phoneNumber: phoneNumberController.text);
-
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => OTPVerificationScreen(),
-                      ));
+                onTap: () async {
+                  if (code == null) return;
+                  debugPrint('+${code.phoneCode}${phoneNumberController.text}');
+                  final navigator = Navigator.of(context);
+                  CoreUtils.showLoader(context);
+                  await ref.read(authControllerProvider).sendOTP(
+                        context: context,
+                        phoneNumber: '+${code.phoneCode}${phoneNumberController.text}',
+                      );
+                  navigator.pop();
                 },
                 width: AppConst.jWidth * 0.6,
                 height: AppConst.jHeight * 0.075,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_app/features/authentication/repository/authentication_repository.dart';
+
+final authControllerProvider = Provider((ref) => AuthenticationController(ref.watch(authProvider)));
 
 class AuthenticationController {
   const AuthenticationController(this.repository);
@@ -9,6 +12,21 @@ class AuthenticationController {
     required BuildContext context,
     required String phoneNumber,
   }) async {
-    return repository.sendOTP(phoneNumber: phoneNumber, context: context);
+    return repository.sendOTP(
+      context: context,
+      phoneNumber: phoneNumber,
+    );
+  }
+
+  Future<void> verifyOTP({
+    required BuildContext context,
+    required String verificationId,
+    required String otp,
+  }) async {
+    return repository.verifyOTP(
+      context: context,
+      verificationId: verificationId,
+      otp: otp,
+    );
   }
 }

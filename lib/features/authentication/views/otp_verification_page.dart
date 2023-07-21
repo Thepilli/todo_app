@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pinput/pinput.dart';
 import 'package:todo_app/core/appstyle.dart';
 import 'package:todo_app/core/colors.dart';
@@ -7,13 +8,15 @@ import 'package:todo_app/core/common/widgets/height_spacer.dart';
 import 'package:todo_app/core/common/widgets/reusable_text.dart';
 import 'package:todo_app/core/constants.dart';
 import 'package:todo_app/core/strings/image_strings.dart';
-import 'package:todo_app/features/todo/views/home_page.dart';
+import 'package:todo_app/features/authentication/controller/authentication_controller.dart';
 
-class OTPVerificationScreen extends StatelessWidget {
-  const OTPVerificationScreen({super.key});
+class OTPVerificationScreen extends ConsumerWidget {
+  const OTPVerificationScreen({super.key, required this.verificationId});
+
+  final String verificationId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
           child: Center(
@@ -33,13 +36,9 @@ class OTPVerificationScreen extends StatelessWidget {
             Pinput(
               length: 6,
               showCursor: true,
-              onCompleted: (value) {
+              onCompleted: (value) async {
                 if (value.length == 6) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomePage(),
-                      ));
+                  await ref.read(authControllerProvider).verifyOTP(context: context, verificationId: verificationId, otp: value);
                 }
               },
               onSubmitted: (value) {
