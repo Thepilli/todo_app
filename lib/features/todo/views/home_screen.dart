@@ -29,7 +29,7 @@ class HomePage extends HookConsumerWidget {
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(85),
+          preferredSize: const Size.fromHeight(100),
           child: Column(
             children: [
               Padding(

@@ -34,6 +34,9 @@ class CustomTextField extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 400),
         decoration: BoxDecoration(color: AppColors.light, borderRadius: BorderRadius.all(Radius.circular(AppConst.jRadius))),
         child: TextFormField(
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           readOnly: isReadOnly,
           keyboardType: keyboardType,
           controller: controller,

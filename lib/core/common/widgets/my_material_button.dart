@@ -20,6 +20,7 @@ class MyMaterialButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
+        enableFeedback: true,
         disabledColor: AppColors.blackColor.withOpacity(.3),
         onPressed: isEnabled ? onPressed : null,
         color: color,

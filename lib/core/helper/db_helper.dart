@@ -4,10 +4,26 @@ class DBHelper {
   const DBHelper._();
 
   static Future<void> createTables(Database database) async {
-    await database.execute('CREATE TABLE users('
-        'id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, '
-        'isVerified INTEGER DEFAULT 0'
-        ')');
+    await database.execute(
+      'CREATE TABLE tasks('
+      'id INTEGER PRIMARY KEY AUTOINCREMENT, '
+      'title STRING, '
+      'description TEXT, '
+      'date STRING, '
+      'startTime STRING, '
+      'endTime STRING, '
+      'remind INTEGER, '
+      'isCompleted INTEGER, '
+      'repeat STRING, '
+      ')',
+    );
+
+    await database.execute(
+      'CREATE TABLE users('
+      'id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 0, '
+      'isVerified INTEGER DEFAULT 0'
+      ')',
+    );
   }
 
   static Future<Database> db() async {
@@ -15,6 +31,14 @@ class DBHelper {
       await createTables(database);
     });
   }
+
+
+  ///TASKS
+  
+
+
+
+  ///USERS
 
   static Future<void> createUser({required bool isVerified}) async {
     final localDb = await db();
