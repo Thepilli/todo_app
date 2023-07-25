@@ -7,6 +7,8 @@ import 'package:todo_app/core/common/widgets/custome_text_field.dart';
 import 'package:todo_app/core/common/widgets/my_material_button.dart';
 import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/features/todo/app/task_date_provider.dart';
+import 'package:todo_app/features/todo/app/task_provider.dart';
+import 'package:todo_app/features/todo/models/task_model.dart';
 
 class AddTaskScreen extends HookConsumerWidget {
   const AddTaskScreen({super.key});
@@ -98,7 +100,9 @@ class AddTaskScreen extends HookConsumerWidget {
               ),
               MyMaterialButton(
                 buttonText: 'Submit',
-                onPressed: () {
+                isEnabled: true,
+                color: Colors.green,
+                onPressed: () async {
                   if (titleController.text.trim().isNotEmpty &&
                       descriptionController.text.trim().isNotEmpty &&
                       dateProvider != null &&
@@ -106,19 +110,37 @@ class AddTaskScreen extends HookConsumerWidget {
                       endProvider != null) {
                     final title = titleController.text.trim();
                     final description = descriptionController.text.trim();
+                    final date = dateProvider;
                     final starTime = startProvider;
                     final endTime = endProvider;
                     debugPrint('title: $title');
                     debugPrint('description: $description');
+                    debugPrint('date: $date');
                     debugPrint('starTime: $starTime');
                     debugPrint('endTime: $endTime');
+                    final navigator = Navigator.of(context);
+                    CoreUtils.showLoader(context);
+                    await ref.read(taskProvider.notifier).addTask(
+                          TaskModel(
+                            title: title,
+                            description: description,
+                            date: date,
+                            startTime: starTime,
+                            endTime: endTime,
+                          ),
+                        );
+                    navigator
+                      ..pop() //pops the loader
+                      ..pop(); //pops teh add screen itself
+
+                    CoreUtils.showSnackBar(
+                        context: context,
+                        message: 'title: $title\ndescription: $description\ndate: $date\nstarTime: $starTime\nendTime: $endTime');
                   } else {
                     CoreUtils.showSnackBar(context: context, message: 'You need to fill out all the fields first');
                     return;
                   }
                 },
-                isEnabled: true,
-                color: Colors.green,
               ),
             ],
           ),

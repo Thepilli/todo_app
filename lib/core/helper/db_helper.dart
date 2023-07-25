@@ -1,4 +1,5 @@
 import 'package:sqflite/sqflite.dart';
+import 'package:todo_app/features/todo/models/task_model.dart';
 
 class DBHelper {
   const DBHelper._();
@@ -13,8 +14,8 @@ class DBHelper {
       'startTime STRING, '
       'endTime STRING, '
       'remind INTEGER, '
-      'isCompleted INTEGER, '
-      'repeat STRING, '
+      'repeat INTEGER, '
+      'isCompleted INTEGER'
       ')',
     );
 
@@ -32,11 +33,56 @@ class DBHelper {
     });
   }
 
-
   ///TASKS
-  
 
+  static Future<void> addTask(TaskModel task) async {
+    final localDb = await db();
 
+    await localDb.insert(
+      'tasks',
+      task.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  static Future<void> deleteTask(int taskId) async {
+    final localDb = await db();
+
+    await localDb.delete(
+      'tasks',
+      where: 'id = ?',
+      whereArgs: [taskId],
+    );
+  }
+
+  static Future<List<Map<String, dynamic>>> getTasks() async {
+    final localDb = await db();
+
+    return localDb.query('tasks', orderBy: 'id');
+  }
+
+  static Future<Map<String, dynamic>> getTaskById(int taskId) async {
+    final localDb = await db();
+
+    final tasks = await localDb.query(
+      'tasks',
+      orderBy: "id = ?",
+      whereArgs: [taskId],
+      limit: 1,
+    );
+    if (tasks.isEmpty) return {};
+    return tasks.first;
+  }
+
+  static Future<void> updateTask(TaskModel task) async {
+    final localDb = await db();
+    await localDb.update(
+      'tasks',
+      task.toMap(),
+      where: 'id =?',
+      whereArgs: [task.id],
+    );
+  }
 
   ///USERS
 

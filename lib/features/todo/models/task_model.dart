@@ -8,7 +8,7 @@ class TaskModel {
     this.startTime,
     this.endTime,
     this.remind = false,
-    this.repeat,
+    this.repeat = true,
   });
 
   factory TaskModel.fromMap(Map<String, dynamic> map) {
@@ -21,7 +21,7 @@ class TaskModel {
       startTime: DateTime.parse(map['startTime'] as String),
       endTime: DateTime.parse(map['endTime'] as String),
       remind: (map['remind'] as num) == 1,
-      repeat: map['repeat'] as String?,
+      repeat: (map['repeat'] as num) == 1,
     );
   }
 
@@ -33,7 +33,7 @@ class TaskModel {
   DateTime? startTime;
   DateTime? endTime;
   bool remind = false;
-  String? repeat;
+  bool repeat = true;
 
   Map<String, dynamic> toMap() => {
         'id': id,
@@ -44,6 +44,6 @@ class TaskModel {
         'startTime': startTime.toString(),
         'endTime': endTime.toString(),
         'remind': remind ? 1 : 0,
-        'repeat': repeat,
+        'repeat': repeat ? 1 : 0,
       };
 }

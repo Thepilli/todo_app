@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -21,9 +23,23 @@ class AppColors {
   static const tGoogleForegroundColor = Color(0xFF5886BD);
   static const tFacebookBgColor = Color(0xFF0C68E0);
 
+  static const colors = [
+    Colors.red,
+    Colors.white,
+    Colors.yellow,
+    Colors.green,
+    Color(0xFFABB2BF),
+  ];
+
   static const red = Colors.red;
   static const light = Colors.white;
   static const yellow = Colors.yellow;
   static const green = Colors.green;
   static const grey = Color(0xFFABB2BF);
+
+  static Color randomColor() {
+    final random = Random();
+    int randomIndex = random.nextInt(AppColors.colors.length);
+    return AppColors.colors[randomIndex];
+  }
 }

@@ -14,7 +14,9 @@ import 'package:todo_app/core/common/widgets/reusable_text.dart';
 import 'package:todo_app/core/constants.dart';
 import 'package:todo_app/core/helper/db_helper.dart';
 import 'package:todo_app/features/authentication/views/login_screen.dart';
+import 'package:todo_app/features/todo/app/task_provider.dart';
 import 'package:todo_app/features/todo/views/add_task_screen.dart';
+import 'package:todo_app/features/todo/views/components/active_tasks.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -24,6 +26,7 @@ class HomePage extends HookConsumerWidget {
     final searchConroller = useTextEditingController();
     final tabController = useTabController(initialLength: 2);
     var size = MediaQuery.of(context).size;
+    ref.read(taskProvider.notifier).refresh();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -134,12 +137,15 @@ class HomePage extends HookConsumerWidget {
             const HeightSpacer(height: 20),
             SizedBox(
               height: size.height * .25,
-              child: TabBarView(
-                controller: tabController,
-                children: const [
-                  ColoredBox(color: Colors.pink),
-                  ColoredBox(color: Colors.amber),
-                ],
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(12)),
+                child: TabBarView(
+                  controller: tabController,
+                  children: const [
+                    ActiveTasks(),
+                    ColoredBox(color: Colors.amber),
+                  ],
+                ),
               ),
             )
           ],

@@ -37,7 +37,7 @@ class MyApp extends ConsumerWidget {
           ),
           home: ref.watch(userProvider).when(
             data: (userExists) {
-              if (userExists) return HomePage();
+              if (userExists) return const HomePage();
               return const OnBoardingScreen();
             },
             error: (error, stackTrace) {
