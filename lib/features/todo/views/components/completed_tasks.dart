@@ -8,21 +8,21 @@ import 'package:todo_app/features/todo/utils/todo_utils.dart';
 import 'package:todo_app/features/todo/views/add_or_edit_task_screen.dart';
 import 'package:todo_app/features/todo/views/components/todo_tile.dart';
 
-class ActiveTasks extends ConsumerWidget {
-  const ActiveTasks({super.key});
+class CompletedTasks extends ConsumerWidget {
+  const CompletedTasks({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final allTasks = ref.watch(taskProvider);
 
     return FutureBuilder(
-      future: TodoUtils.getActiveTasksForToday(allTasks),
+      future: TodoUtils.getCompletedTasksForToday(allTasks),
       builder: (_, snapshot) {
         if (snapshot.hasData && snapshot.data != null) {
           debugPrint('Snapshot length: ${snapshot.data?.length}');
           if (snapshot.data!.isEmpty) {
             return Center(
-              child: ReusableText(text: 'No Pending tasks for today', style: appstyle(18, AppColors.light, FontWeight.bold)),
+              child: ReusableText(text: 'No Completed tasks for today', style: appstyle(18, AppColors.light, FontWeight.bold)),
             );
           }
           return ColoredBox(

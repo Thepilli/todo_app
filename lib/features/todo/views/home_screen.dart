@@ -17,6 +17,7 @@ import 'package:todo_app/features/authentication/views/login_screen.dart';
 import 'package:todo_app/features/todo/app/task_provider.dart';
 import 'package:todo_app/features/todo/views/add_task_screen.dart';
 import 'package:todo_app/features/todo/views/components/active_tasks.dart';
+import 'package:todo_app/features/todo/views/components/completed_tasks.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -143,7 +144,7 @@ class HomePage extends HookConsumerWidget {
                   controller: tabController,
                   children: const [
                     ActiveTasks(),
-                    ColoredBox(color: Colors.amber),
+                    CompletedTasks(),
                   ],
                 ),
               ),

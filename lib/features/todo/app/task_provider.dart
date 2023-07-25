@@ -28,8 +28,12 @@ class Task extends _$Task {
     refresh();
   }
 
-  Future<void> markAsCompleted(TaskModel task) async {
+  Future<void> updateTask(TaskModel task) async {
     await DBHelper.updateTask(task);
     refresh();
+  }
+
+  Future<void> markAsCompleted(TaskModel task) async {
+    await updateTask(task);
   }
 }
