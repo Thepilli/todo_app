@@ -41,8 +41,8 @@ class MyApp extends ConsumerWidget {
               return const OnBoardingScreen();
             },
             error: (error, stackTrace) {
-              print('ERROR: $error');
-              print(stackTrace.toString());
+              debugPrint('ERROR: $error');
+              debugPrint(stackTrace.toString());
               return const OnBoardingScreen();
             },
             loading: () {

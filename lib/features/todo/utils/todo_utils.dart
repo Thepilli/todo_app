@@ -29,6 +29,16 @@ class TodoUtils {
     }).toList();
   }
 
+  static Future<List<TaskModel>> getTasksForNextWeek(List<TaskModel> allTasks) async {
+    final nextWeek = DateTime.now().add(const Duration(days: 7));
+    final dayAfterTomorrow = DateTime.now().add(const Duration(days: 1));
+
+    if (allTasks.isEmpty) return allTasks;
+    return allTasks.where((task) {
+      return task.date!.isAfter(dayAfterTomorrow) && task.date!.isBefore(nextWeek);
+    }).toList();
+  }
+
   static Future<List<TaskModel>> getTasksFromOneMonthAgo(List<TaskModel> allTasks) async {
     final oneMonthAgo = DateTime.now().subtract(const Duration(days: 30));
     if (allTasks.isEmpty) return allTasks;

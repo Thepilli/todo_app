@@ -18,6 +18,8 @@ import 'package:todo_app/features/todo/app/task_provider.dart';
 import 'package:todo_app/features/todo/views/add_task_screen.dart';
 import 'package:todo_app/features/todo/views/components/active_tasks.dart';
 import 'package:todo_app/features/todo/views/components/completed_tasks.dart';
+import 'package:todo_app/features/todo/views/components/tasks_for_next_week.dart';
+import 'package:todo_app/features/todo/views/components/tasks_for_tomorrow.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -148,7 +150,11 @@ class HomePage extends HookConsumerWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            const HeightSpacer(height: 20),
+            const TasksForTomorrow(),
+            const HeightSpacer(height: 20),
+            const TasksForNextWeek()
           ],
         ),
       )),

@@ -20,9 +20,9 @@ class FadingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
+      maxLines: 2,
       softWrap: false,
-      overflow: TextOverflow.fade,
+      overflow: TextOverflow.ellipsis,
       textAlign: textAlign ?? TextAlign.left,
       style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight ?? FontWeight.normal, color: color),
     );

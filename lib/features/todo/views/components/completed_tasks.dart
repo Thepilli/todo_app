@@ -26,7 +26,7 @@ class CompletedTasks extends ConsumerWidget {
             );
           }
           return ColoredBox(
-            color: AppColors.yellow,
+            color: AppColors.darkBackgroundContainer,
             child: ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (_, index) {
@@ -48,7 +48,7 @@ class CompletedTasks extends ConsumerWidget {
                   endIcon: Switch(
                     value: task.isCompleted,
                     onChanged: (value) {
-                      task.isCompleted = true;
+                      task.isCompleted = !task.isCompleted;
                       ref.read(taskProvider.notifier).markAsCompleted(task);
                     },
                   ),

@@ -16,12 +16,14 @@ class ToDoTile extends StatelessWidget {
     required this.onDelete,
     required this.endIcon,
     this.bottomMargin,
+    this.color,
   });
   final TaskModel task;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
   final Widget endIcon;
   final double? bottomMargin;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class ToDoTile extends StatelessWidget {
               bottom: bottomMargin!.h,
             ),
       decoration: BoxDecoration(
-        color: AppColors.blackColor.withOpacity(.4),
+        color: AppColors.tPrimaryColor.withOpacity(.8),
         borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
