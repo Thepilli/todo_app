@@ -27,6 +27,7 @@ class ToDoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(task.isCompleted.toString());
     return Container(
       padding: const EdgeInsets.all(8),
       margin: bottomMargin == null
@@ -48,7 +49,7 @@ class ToDoTile extends StatelessWidget {
                 height: 80.h,
                 width: 5.h,
                 decoration: BoxDecoration(
-                  color: AppColors.randomColor(),
+                  color: task.isCompleted ? AppColors.completed : AppColors.notCompleted,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(12),
                   ),

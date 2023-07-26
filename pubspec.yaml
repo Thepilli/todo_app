@@ -49,6 +49,7 @@ dependencies:
   flutter_hooks: ^0.18.6
   flutter_datetime_picker_plus: ^2.0.1
   intl: ^0.18.1
+  flutter_local_notifications: ^15.1.0+1
 
 dev_dependencies:
   flutter_test:

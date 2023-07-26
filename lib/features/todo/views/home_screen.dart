@@ -15,7 +15,7 @@ import 'package:todo_app/core/constants.dart';
 import 'package:todo_app/core/helper/db_helper.dart';
 import 'package:todo_app/features/authentication/views/login_screen.dart';
 import 'package:todo_app/features/todo/app/task_provider.dart';
-import 'package:todo_app/features/todo/views/add_task_screen.dart';
+import 'package:todo_app/features/todo/views/add_or_edit_task_screen.dart';
 import 'package:todo_app/features/todo/views/components/active_tasks.dart';
 import 'package:todo_app/features/todo/views/components/completed_tasks.dart';
 import 'package:todo_app/features/todo/views/components/tasks_for_next_week.dart';
@@ -73,7 +73,7 @@ class HomePage extends HookConsumerWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const AddTaskScreen(),
+                              builder: (context) => const AddOrEditTaskScreen(null),
                             ));
                       },
                       icon: const Icon(
@@ -113,7 +113,7 @@ class HomePage extends HookConsumerWidget {
         child: ListView(
           shrinkWrap: true,
           children: [
-            const HeightSpacer(height: 40),
+            const HeightSpacer(height: 10),
             Row(
               children: [
                 const Icon(
@@ -125,12 +125,24 @@ class HomePage extends HookConsumerWidget {
             ),
             const HeightSpacer(height: 20),
             DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.grey, borderRadius: BorderRadius.all(Radius.circular(AppConst.jRadius))),
+              decoration: BoxDecoration(
+                color: AppColors.grey,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(AppConst.jRadius),
+                ),
+              ),
               child: TabBar(
+                labelPadding: EdgeInsets.zero,
+                indicatorPadding: EdgeInsets.zero,
                 controller: tabController,
                 indicatorSize: TabBarIndicatorSize.tab,
-                indicator:
-                    BoxDecoration(color: AppColors.light, borderRadius: BorderRadius.all(Radius.circular(AppConst.jRadius))),
+                indicatorColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: AppColors.light,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(AppConst.jRadius),
+                  ),
+                ),
                 tabs: [
                   Tab(child: ReusableText(text: "Pending", style: appstyle(20, AppColors.textDarkColor, FontWeight.bold))),
                   Tab(child: ReusableText(text: "Completed", style: appstyle(20, AppColors.textDarkColor, FontWeight.bold))),
