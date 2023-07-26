@@ -21,8 +21,11 @@ class ActiveTasks extends ConsumerWidget {
         if (snapshot.hasData && snapshot.data != null) {
           debugPrint('Snapshot length: ${snapshot.data?.length}');
           if (snapshot.data!.isEmpty) {
-            return Center(
-              child: ReusableText(text: 'No Pending tasks for today', style: appstyle(18, AppColors.light, FontWeight.bold)),
+            return ColoredBox(
+              color: AppColors.darkBackgroundContainer,
+              child: Center(
+                child: ReusableText(text: 'No Pending tasks for today', style: appstyle(18, AppColors.light, FontWeight.bold)),
+              ),
             );
           }
           return ColoredBox(

@@ -70,30 +70,42 @@ class ToDoTile extends StatelessWidget {
                       text: task.description!,
                       style: appstyle(15, AppColors.whiteColor, FontWeight.normal),
                     ),
-                    const WhiteSpace(height: 10),
+                    const WhiteSpace(height: 5),
                     Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 3.h,
-                            horizontal: 15.w,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.darkBackground,
-                            border: Border.all(
-                              width: .3,
-                              color: AppColors.greyBackground,
+                        Column(
+                          children: [
+                            if (!DateUtils.isSameDay(task.date, DateTime.now()) &&
+                                !DateUtils.isSameDay(task.date, DateTime.now().add(const Duration(days: 1))))
+                              Center(
+                                child: Text(
+                                  "due on:  ${task.date!.dateOnly}",
+                                  style: appstyle(12, AppColors.whiteColor, FontWeight.normal),
+                                ),
+                              ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 3.h,
+                                horizontal: 15.w,
+                              ),
+                              decoration: BoxDecoration(
+                                color: AppColors.darkBackground,
+                                border: Border.all(
+                                  width: .3,
+                                  color: AppColors.greyBackground,
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '${task.startTime!.timeOnly} | ${task.endTime!.timeOnly}',
+                                  style: appstyle(12, AppColors.whiteColor, FontWeight.normal),
+                                ),
+                              ),
                             ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(12),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${task.startTime!.timeOnly} | ${task.endTime!.timeOnly}',
-                              style: appstyle(12, AppColors.whiteColor, FontWeight.normal),
-                            ),
-                          ),
+                          ],
                         ),
                         const WhiteSpace(width: 20),
                         if (!task.isCompleted)

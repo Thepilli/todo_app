@@ -151,7 +151,8 @@ class HomePage extends HookConsumerWidget {
             ),
             const HeightSpacer(height: 20),
             SizedBox(
-              height: size.height * .25,
+              // height: size.height * .3,
+              height: 255,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                 child: TabBarView(

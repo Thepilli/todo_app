@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:todo_app/core/colors.dart';
 import 'package:todo_app/core/common/widgets/.fading_text.dart';
@@ -40,24 +39,15 @@ class _TaskExpansionTileState extends State<TaskExpansionTile> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: widget.color,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  height: 80.h,
-                  width: 5.w,
-                ),
                 const WhiteSpace(width: 15),
                 ConstrainedBox(
                   constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .6),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FadingText(
                         text: widget.title,
-                        fontSize: 24,
+                        fontSize: 20,
                         color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                       ),
@@ -81,6 +71,7 @@ class _TaskExpansionTileState extends State<TaskExpansionTile> {
                 final innerController = ExpansionTileController.of(secondContext);
                 return Icon(
                   innerController.isExpanded ? AntDesign.closecircleo : AntDesign.circledown,
+                  color: innerController.isExpanded ? AppColors.notCompleted : AppColors.tPrimaryColor,
                 );
               },
             ),
